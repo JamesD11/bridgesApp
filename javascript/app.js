@@ -1,6 +1,6 @@
 
 //Chat feature created with firebase
-var messagesRef = new Firebase("https://bridgeschat.firebaseio.com/");
+var messagesRef = new Firebase("https://glaring-heat-5479.firebaseio.com/");
 //Chat box values
 var messageField = $('#chatTextInput');
 var nameField = $('#nameInput');
@@ -9,9 +9,9 @@ var messageList = $('#chat')
 
 //Actions after the user enters message
 messageField.keydown(function (e) {
-   
+
 	if (e.keyCode == 13){
-		
+
 		$("#chatTextInput").focus();
 		var username = nameField.val();
 		var message = messageField.val();
@@ -27,7 +27,7 @@ messagesRef.limitToLast(10).on('child_added',function(snapshot){
 
 	var data = snapshot.val();
 	var username = data.name || "anonymous";
-	var message = data.text; 
+	var message = data.text;
 
 	var messageElement = $("<div class='well well-sm'></div>");
 	var nameElement = $("<strong class='chatContent'></strong>");
@@ -353,7 +353,7 @@ var questions = [{//1
 }, {//68
   question: "There were 13 original states. Name three.",
   answers: ["Louisiana, Texas, New Mexico", "California, Nebraska, Nevada", "Michigan, Illinois, Ohio", "Massachusetts, New York, Virginia"],
-  correctAnswer: "Massachusetts, New York, Virginia" 
+  correctAnswer: "Massachusetts, New York, Virginia"
 }, {//69
   question: "What did Susan B Anthony do?",
   answers: ["Was first woman to serve in office", "Fought for women's rights", "Fought for slave's rights", "Fought in the Battle of Monmouth"],
@@ -493,7 +493,7 @@ var incorrect = 0;
 // start function
 
 function start(){
-	
+
 	randomNum();
 	display();
 
@@ -502,7 +502,7 @@ function start(){
 start();
 
 $(document).on("click", ".answer-button3", function(e){
-	
+
 	start();
 });
 
@@ -534,7 +534,7 @@ function display(){
 //on click function, display answer, comparison function, increment score totals, new question
 
 $(document).on("click", ".answer-button", function(e) {
-	
+
 	if ($(e.target).data("name") === questions[questionNumber].correctAnswer){
     	$("#resultDiv").html("<div class='card-panel teal white-text'>Correct!!!!</div><a class='answer-button3 waves-effect waves-light btn'>next</a>");
     	correct++;
@@ -564,9 +564,9 @@ var languages = [{//1
   value: "en-it"
 }];
 
-//Language buttons populate panel 
+//Language buttons populate panel
 for (var i = 0; i<languages.length; i++) {
-      $("#dropdown1").append("<button class='answer-button1 red darken-4 ' id='button' value=" + languages[i].value + " data-name=" 
+      $("#dropdown1").append("<button class='answer-button1 red darken-4 ' id='button' value=" + languages[i].value + " data-name="
         + languages[i].language + "''>"  + languages[i].language + "</button>");
     }
 
@@ -574,7 +574,7 @@ for (var i = 0; i<languages.length; i++) {
 
 $(document).on("click", '.answer-button1', function(e) {
 
-	
+
 	$("#panel").empty();
 
   var queryUrl = 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160317T225805Z.24fe4d3e49b00f5f.6bcc824a7ac0b4ec0da91a97f022d7045d9b121c&text=' +  questions[questionNumber].question +  '&lang=' + $(event.target).attr("value");
@@ -582,16 +582,16 @@ $(document).on("click", '.answer-button1', function(e) {
 	$.ajax({url: queryUrl, method : 'GET'})
 		.done(function(response){
 			var result = response.text[0];
-			
+
 				 $("#questionDiv").html("<h2>" + result + "</h2>");
-		
-				
-			
-		
+
+
+
+
 		// console.log(JSON.stringify(response));
 		console.log(response);
 //console.log($(event.target).attr("value"));
-  
+
 });
 
 var queryUrl2 = 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160317T225805Z.24fe4d3e49b00f5f.6bcc824a7ac0b4ec0da91a97f022d7045d9b121c&text=' +  questions[questionNumber].answers[0] +  '&lang=' + $(event.target).attr("value");
@@ -602,11 +602,11 @@ var queryUrl2 = 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl
 			var result = response.text;
 
 			$("#panel").append("<a id='button' class='answer-button2 waves-effect waves-light btn-large' data-name='" + questions[questionNumber].answers[0] + "' >" + response.text[0] + "</a>");
-			
+
 				 // $("#panel").append("<button class='answer-button' id='button'" + "data-name='" + questions[this.questionNumber].answers[i] + "''>" + result + "</button>");
-				
-			
-		 
+
+
+
 		// console.log(JSON.stringify(response));
 		// console.log(response);
 
@@ -620,9 +620,9 @@ var queryUrl3 = 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl
 			var result = response.text;
 			// console.log(response.text[0]);
 				$("#panel").append("<a id='button' class='answer-button2 waves-effect waves-light btn-large' data-name='" + questions[questionNumber].answers[1] + "' >" + response.text[0] + "</a>");
-				
+
 			console.log(questions[questionNumber].answers[1]);
-		
+
 		// console.log(JSON.stringify(response));
 		// console.log(response);
 
@@ -634,11 +634,11 @@ var queryUrl4= 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.
 		$.ajax({url: queryUrl4, method : 'GET'})
 		.done(function(response){
 			var result = response.text;
-			
+
 				 $("#panel").append("<a id='button' class='answer-button2 waves-effect waves-light btn-large' data-name='" + questions[questionNumber].answers[2] + "' >" + response.text[0] + "</a>");
-				
-			
-		
+
+
+
 		// console.log(JSON.stringify(response));
 		// console.log(response);
 
@@ -650,21 +650,21 @@ var queryUrl5 = 'https:translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl
 		$.ajax({url: queryUrl5, method : 'GET'})
 		.done(function(response){
 			var result = response.text;
-			
+
 				 $("#panel").append("<a id='button' class='answer-button2 waves-effect waves-light btn-large' data-name='" + questions[questionNumber].answers[3] + "' >" + response.text[0] + "</a>");
-				
-			
-		
+
+
+
 		// console.log(JSON.stringify(response));
 		// console.log(response);
 
-		
+
 });
 
 $(document).on("click", ".answer-button2", function(e) {
-	
+
 	if ($(e.target).data("name") === questions[questionNumber].correctAnswer){
-		
+
     	$("#resultDiv").html("<div class='card-panel teal white-text'>Correct!!!!</div><a class='answer-button3 waves-effect waves-light btn'>next</a>");
     	correct++;
     } else {
@@ -676,4 +676,3 @@ $(document).on("click", ".answer-button2", function(e) {
 });
 
 });
-
